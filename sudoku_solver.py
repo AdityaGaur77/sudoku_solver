@@ -27,19 +27,29 @@ class Board:
             currentrow = [self.board[0][row-1], self.board[1][row-1], self.board[2][row-1]]
             if column <=3:
                 currentrow[0][column-1] = num
-            elif column <=6:
+            elif 3 < column <=6:
                 currentrow[1][column-4] = num
-            elif column <=9:
+            elif 6 < column <=9:
                 currentrow[2][column-7] = num
-        elif row <=6:
-            currentrow = [self.board[0][row - 1], self.board[1][row - 1], self.board[2][row - 1]]
+        elif 3 < row <=6:
+            currentrow = [self.board[3][row - 4], self.board[4][row - 4], self.board[5][row - 4]]
             if column <= 3:
                 currentrow[0][column - 1] = num
-            elif column <= 6:
+            elif 3 < column <= 6:
                 currentrow[1][column - 4] = num
-            elif column <= 9:
+            elif 6 < column <= 9:
+                currentrow[2][column - 7] = num
+        elif 6 < row <=9:
+            currentrow = [self.board[6][row - 7], self.board[7][row - 7], self.board[8][row - 7]]
+            if column <= 3:
+                currentrow[0][column - 1] = num
+            elif 3 < column <= 6:
+                currentrow[1][column - 4] = num
+            elif 6 < column <= 9:
                 currentrow[2][column - 7] = num
 test = Board()
 test.empty_board()
-test.add_num(2,2,2)
+test.add_num(5,5,3)
+test.add_num(9, 3, 5)
+test.add_num(1, 9, 9)
 print(test)
