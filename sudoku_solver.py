@@ -22,6 +22,4 @@ class Board:
             for k in cell:
                 print(k)
                 print()
-main_board = Board()
-main_board.empty_board()
-main_board.printcell(1)
+
