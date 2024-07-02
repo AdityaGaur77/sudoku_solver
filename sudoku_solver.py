@@ -19,8 +19,8 @@ class Board:
 
     def print_cell(self, number):
         cell = self.board[number-1]
-        for k in cell:
-            print(k)
+        for q in cell:
+            print(q)
             print()
     def add_num(self, num, row, column):
         if row <= 3:
@@ -47,9 +47,97 @@ class Board:
                 currentrow[1][column - 4] = num
             elif 6 < column <= 9:
                 currentrow[2][column - 7] = num
+    def solve_board(self):
+        numcounter = 0
+        for b in self.board:
+            for j in b:
+                for p in j:
+                    if type(p) == int:
+                        numcounter +=1
+        if numcounter < 17:
+            print("not enough numbers in sudoku to solve")
+            exit()
+        queue = [1,2, 3, 4, 5, 6, 7, 8, 9]
+        for z in range(len(self.board)):
+                for l in range(len(self.board[z])):
+                    for k in range(len(self.board[z][l])):
+                        f = 0
+                        while self.board[z][l][k] == "_":
+                          if(queue[f] not in self.board[z][0]) and (queue[f] not in self.board[z][1]) and (queue[f] not in self.board[z][2]): #checking to see if number is in cell
+                                if z == 0 or z==3 or z==6:
+                                    if (queue[f] not in self.board[z][l]) and (queue[f] not in self.board[z+1][l]) and (queue[f] not in self.board[z+2][l]): #checking to see if num is in row
+                                        if z < 3:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z+3]]) and (queue[f] not in [r[k] for r in self.board[z+6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                              f +=1
+                                              continue
+                                        elif z < 6:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z+3]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                        elif z < 9:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z-6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                    else:
+                                        f+=1
+                                        continue
+                                
+                                elif z == 1 or z==4 or z==7:
+                                    if (queue[f] not in self.board[z][l]) and (queue[f] not in self.board[z-1][l]) and (queue[f] not in self.board[z+1][l]): #checking to see if num is in row
+                                        if z < 3:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z+3]]) and (queue[f] not in [r[k] for r in self.board[z+6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                              f +=1
+                                              continue
+                                        elif z < 6:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z+3]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                        elif z < 9:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z-6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                    else:
+                                        f+=1
+                                        continue
+                                elif z==2 or z==5 or z==8:
+                                    if (queue[f] not in self.board[z][l]) and (queue[f] not in self.board[z-1][l]) and (queue[f] not in self.board[z-2][l]): #checking to see if num is in row
+                                        if z < 3:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z+3]]) and (queue[f] not in [r[k] for r in self.board[z+6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                              f +=1
+                                              continue
+                                        elif z < 6:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z+3]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                        elif z < 9:
+                                            if (queue[f] not in [r[k] for r in self.board[z]]) and (queue[f] not in [r[k] for r in self.board[z-3]]) and (queue[f] not in [r[k] for r in self.board[z-6]]):
+                                                self.board[z][l][k] = queue[f]
+                                            else:
+                                                f+=1
+                                                continue
+                                    else:
+                                        f+=1
+                                        continue
+                          else:
+                              f +=1
+                              continue
 test = Board()
 test.empty_board()
-test.add_num(5,5,3)
-test.add_num(9, 3, 5)
-test.add_num(1, 9, 9)
+test.solve_board()
 print(test)
