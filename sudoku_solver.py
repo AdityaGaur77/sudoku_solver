@@ -139,5 +139,17 @@ class Board:
                               continue
 test = Board()
 test.empty_board()
+testboard = [
+    [[1, 3, 2],
+     [4, 5, 6],
+     [7, 8, 9] ], 
+     [
+      [4,5,6],
+      [7,8,9],
+      [1,3,2],
+     ]
+]
+test.board[0] = testboard[0]
+test.board[1] =testboard[1]
 test.solve_board()
 print(test)
