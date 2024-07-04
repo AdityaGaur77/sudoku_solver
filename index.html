@@ -8,7 +8,6 @@
   <link rel="icon" type="image/jpg"
     href="https://static.vecteezy.com/system/resources/previews/024/325/752/original/sudoku-icon-in-blue-and-white-color-vector.jpg">
   <style>
-
     body {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wordsrated.com/wp-content/uploads/2024/03/NYT-Sudoku-Strategy-Tips-and-Tricks.jpg');
       background-size: cover;
@@ -19,6 +18,8 @@
       flex-direction: column;
       align-items: center;
       font-family: Arial, sans-serif;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     input[type=number]::-webkit-inner-spin-button,
@@ -34,7 +35,6 @@
     }
 
     .sudoku-board {
-      position: aboslute;
       display: grid;
       grid-template-columns: repeat(9, 40px);
       grid-gap: 1px;
@@ -65,7 +65,6 @@
       font-size: 20px;
     }
 
-    /* Bold lines every third column and row */
     .sudoku-cell:nth-child(3n) {
       border-right: 3px solid #000;
     }
@@ -99,16 +98,45 @@
     #solution-board {
       display: none;
     }
+
+    h1 {
+      color: rgb(211, 199, 199);
+      font-size: 50px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .sudoku-board {
+        grid-template-columns: repeat(9, 30px);
+      }
+
+      .sudoku-cell {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+
+      .sudoku-cell input {
+        font-size: 16px;
+      }
+
+      #solve-button {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <h1 style="color: rgb(211, 199, 199); font-size: 50px;">Sudoku Solver</h1>
+  <h1>Sudoku Solver</h1>
   <div id="input-board" class="sudoku-board"></div>
   <button id="solve-button">Solve</button>
   <div id="solution-board" class="sudoku-board"></div>
-
-
 
   <script>
     function createBoard(containerId, editable = true) {
@@ -128,13 +156,11 @@
             }
           });
 
-          
-          // Add event listener for input change
           input.addEventListener('change', (event) => {
             const value = parseInt(event.target.value);
             if (value === 0 || isNaN(value)) {
               alert('Invalid Input: 0 is not allowed in Sudoku!');
-              event.target.value = ''; // Clear the input field
+              event.target.value = '';
             }
           });
 
